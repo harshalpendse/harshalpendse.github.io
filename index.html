@@ -10,7 +10,8 @@ body {
   padding: 0;
   min-height: 100vh;
   color: #f5f5f5;
-  font-family: 'Courier New', Courier, monospace;
+  /* font-family: 'Courier New', Courier, monospace; */
+  font-family: 'Fira Code', monospace;
   overflow-x: hidden;
   background: #181818;
 }
@@ -34,7 +35,7 @@ body {
   z-index: 2;
   font-size: 3rem;
   font-weight: bold;
-  color: #FFE6FA;
+  color: linear-gradient(135deg, #FF4B91, #8E2DE2);
   text-shadow: 0 0 15px rgba(255, 182, 249, 1), 0 0 25px rgba(200, 100, 255, 0.8);
   text-align: left;
   margin: 5%;
@@ -119,6 +120,10 @@ body {
   animation: shape6 35s infinite;
 }
 
+.scrambleTarget {
+  color: #FFA5AB;
+}
+
 @keyframes shape1 {
   0% { transform: translate(0, 0) scale(1); border-radius: 24% 76% 77% 23% / 30% 30% 70% 70%; }
   25% { transform: translate(-50%,-20%) scale(1.2); border-radius: 28% 72% 81% 19% / 78% 25% 75% 22%; }
@@ -175,6 +180,11 @@ body {
   max-width: 900px;
   line-height: 2;
   padding-bottom: 5%;
+}
+
+.imp {
+  color: #FFB86C;
+  font-weight: bold;
 }
 
 .vertical-line {
@@ -287,15 +297,16 @@ p, li {
 
   <h2 class="scrambleTarget">> Experience</h2>
   <p>Intern @ CashRich (FinTech Company)<br>October 2024 – January 2025</p>
-  <ul>
-    <li>Worked on full-stack development using PHP (Laravel), WordPress.</li>
-    <li>Used Python (pandas) to filter and process CSV/XLSX files, applied filters based on conditions, and saved the final data automatically.</li>
-    <li>Integrated ChatGPT & GROK API for support automation.</li>
-    <li>Developed Python scripts for web scraping to collect data.</li>
-    <li>Identified and resolved security vulnerabilities reported in VAPT reports.</li>
-    <li>Worked with Microsoft tools, Mixpanel, and Google Analytics for data analysis and performance monitoring.</li>
-    <li>Built a solution for managing event passes with WhatsApp API integration.</li>
-  </ul>
+<ul>
+  <li>Worked on full-stack development using <span class="imp">PHP (Laravel)</span> and <span class="imp">WordPress</span>.</li>
+  <li>Used <span class="imp">Python (pandas)</span> to filter and process CSV/XLSX files, apply conditional filters, and automate data export.</li>
+  <li>Integrated <span class="imp">ChatGPT</span> and <span class="imp">GROK API</span> for customer support automation.</li>
+  <li>Developed <span class="imp">Python scripts</span> for web scraping and data collection.</li>
+  <li>Identified and resolved security vulnerabilities from <span class="imp">VAPT reports</span>.</li>
+  <li>Utilized Microsoft tools, Mixpanel, and Google Analytics for <span class="imp">data analysis and performance monitoring</span>.</li>
+  <li>Designed and built a custom <span class="imp">event-pass management system</span> for an international event  integrating an unofficial <span class="imp">WhatsApp API</span> to verify attendees, retrieve and print passes, and send real-time stats to organizers.</li>
+</ul>
+
 
   <h2 class="scrambleTarget">> Technologies Known</h2>
   <div class="tech-lists">
@@ -318,15 +329,15 @@ p, li {
 
   <h2 class="scrambleTarget">> Education</h2>
   <ul>
-    <li>B.E. in CSE (AIML + CyberSecurity Honors), University of Mumbai, 2024</li>
-    <li>8.10/10 CGPA</li>
+    <li>B.E. in CSE (AIML + CyberSecurity Honors), SCOE -Kharghar, 2024 <b>8.10/10 CGPA</b></li>
   </ul>
 
   <h2 class="scrambleTarget">> Links</h2>
   <p>
-    Email: <a href="mailto:harshalpendse2142@gmail.com" style="color: #D66EFF;">harshalpendse2142@gmail.com</a><br>
-    LinkedIn: <a href="https://www.linkedin.com/in/harshalpendse/" style="color: #D66EFF;">linkedin.com/in/harshalpendse</a><br>
-    GitHub: <a href="https://github.com/harshalpendse" style="color: #D66EFF;">github.com/harshalpendse</a><br>
+  Email: 📧 <a href="mailto:harshalpendse2142@gmail.com" style="color: #7FDBFF;">harshalpendse2142@gmail.com</a><br>
+LinkedIn: 💼 <a href="https://www.linkedin.com/in/harshal-pendse/" style="color: #7FDBFF;">linkedin.com/in/harshal-pendse</a><br>
+GitHub: 💻 <a href="https://github.com/harshalpendse" style="color: #7FDBFF;">github.com/harshalpendse</a><br>
+
   </p>
 </div>
 
