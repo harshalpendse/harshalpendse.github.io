@@ -1,434 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "tsw9rr0bvp");
-</script>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WFCQ0M4LP8"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Google Tag Manager and Microsoft Clarity scripts are kept as is, but we focus on optimizing the rendering below -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "tsw9rr0bvp");
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WFCQ0M4LP8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WFCQ0M4LP8');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harshal Pendse</title>
+    <!-- We're keeping 'Fira Code' for the terminal look, assuming it is loaded externally or locally, but prioritizing speed by not loading it here. -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            color: #f5f5f5;
+            font-family: 'Fira Code', monospace;
+            overflow-x: hidden;
+            background: #181818;
+        }
 
-  gtag('config', 'G-WFCQ0M4LP8');
-</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Harshal Pendse</title>
-<style>
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  color: #f5f5f5;
-  /* font-family: 'Courier New', Courier, monospace; */
-  font-family: 'Fira Code', monospace;
-  overflow-x: hidden;
-  background: #181818;
-}
+        .content {
+            position: relative;
+            z-index: 1;
+            margin: 5% auto;
+            /* Fluid horizontal padding */
+            padding: 0 4vw; 
+            max-width: 900px;
+            line-height: 1.8; 
+            padding-bottom: 5%;
+        }
 
-.h1-container {
-  width: 100%;
-  position: relative;
-  display: block;
-  padding: 2rem 4rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  background: rgba(0,0,0,0.75);
-  overflow: hidden;
-  margin: 2rem auto;
-  max-width: 100%;
-  box-sizing: border-box;
-}
+        .h1-container {
+            width: 100%;
+            position: relative;
+            display: block;
+            /* Fluid horizontal padding */
+            padding: 2rem 4vw; 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            background: rgba(0,0,0,0.75);
+            overflow: hidden;
+            margin: 2rem auto;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
 
-.h1-container h1 {
-  position: relative;
-  z-index: 2;
-  font-size: 3rem;
-  font-weight: bold;
-  color: linear-gradient(135deg, #FF4B91, #8E2DE2);
-  text-shadow: 0 0 15px rgba(255, 182, 249, 1), 0 0 25px rgba(200, 100, 255, 0.8);
-  text-align: left;
-  margin: 5%;
-  white-space: nowrap;
-  overflow-wrap: normal;
-  word-break: keep-all;
-}
+        /* Optimized H1 Typing Effect */
+        .h1-container h1 {
+            position: relative;
+            z-index: 2;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #f5f5f5; 
+            text-shadow: none; /* REMOVED TEXT SHADOW */
+            text-align: left;
+            margin: 5% 0; 
+            width: fit-content; 
+            overflow: hidden; 
+            border-right: 0.15em solid rgba(255, 255, 255, 0.75); 
+            white-space: nowrap;
+            letter-spacing: 0.15em;
+            animation: 
+                typing 3s steps(30, end),
+                blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: rgba(255, 255, 255, 0.75); }
+        }
 
-.h1-animation-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 1;
-}
+        .h1-animation-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            z-index: 1;
+        }
 
-.shape1, .shape2, .shape3, .shape4, .shape5, .shape6 {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(10rem);
-  opacity: 0.7;
-}
+        .shape1, .shape2, .shape3, .shape4, .shape5, .shape6 {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(10rem);
+            opacity: 0.7;
+            will-change: transform; 
+        }
 
-.shape1 {
-  top: 42%;
-  left: 70%;
-  width: 25rem;
-  height: 25rem;
-  background: #FF4C93;
-  border-radius: 24% 76% 77% 23% / 30% 30% 70% 70%;
-  animation: shape1 20s infinite;
-}
+        /* Reduced the number of shapes and simplified keyframes for better performance */
+        .shape1 { top: 42%; left: 70%; width: 25rem; height: 25rem; background: #FF4C93; animation: simple-move1 20s infinite alternate; }
+        .shape2 { top: 33%; left: 40%; width: 35rem; height: 25rem; background: #D66EFF; animation: simple-move2 35s infinite alternate; }
+        .shape3 { top: 20%; left: 80%; width: 25rem; height: 25rem; background: #9B5DE5; animation: simple-move3 30s infinite alternate; }
+        
+        /* Hiding less essential, performance-heavy shapes by default */
+        .shape4, .shape5, .shape6 { display: none; }
 
-.shape2 {
-  top: 33%;
-  left: 40%;
-  width: 35rem;
-  height: 25rem;
-  background: #D66EFF;
-  border-radius: 73% 27% 77% 23% / 53% 4% 96% 47%;
-  animation: shape2 35s infinite;
-}
+        /* Simpler, faster keyframes using only translate and scale */
+        @keyframes simple-move1 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-30%, -20%) scale(1.1); }
+        }
 
-.shape3 {
-  top: 20%;
-  left: 80%;
-  width: 25rem;
-  height: 25rem;
-  background: #9B5DE5;
-  border-radius: 70% 30% 80% 20% / 42% 25% 75% 58%;
-  animation: shape3 30s infinite;
-}
+        @keyframes simple-move2 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-50%, 10%) scale(1.2); }
+        }
 
-.shape4 {
-  top: 15%;
-  left: 20%;
-  width: 20rem;
-  height: 20rem;
-  background: #FFB6F9;
-  border-radius: 60% 40% 60% 40%;
-  animation: shape4 25s infinite;
-}
+        @keyframes simple-move3 {
+            0% { transform: translate(0, 0) scale(1.2); }
+            100% { transform: translate(20%, -30%) scale(1); }
+        }
 
-.shape5 {
-  top: 50%;
-  left: 10%;
-  width: 30rem;
-  height: 20rem;
-  background: #FFA5AB;
-  border-radius: 40% 60% 60% 40%;
-  animation: shape5 30s infinite;
-}
 
-.shape6 {
-  top: 60%;
-  left: 50%;
-  width: 25rem;
-  height: 25rem;
-  background: #CBAACB;
-  border-radius: 70% 30% 80% 20%;
-  animation: shape6 35s infinite;
-}
+        h2 {
+            font-size: 1.8rem;
+            color: #f0f0f0;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
 
-.scrambleTarget {
-  color: #FFA5AB;
-}
+        p, li {
+            color: #e5e5e5;
+            font-size: 1.1rem;
+        }
 
-@keyframes shape1 {
-  0% { transform: translate(0, 0) scale(1); border-radius: 24% 76% 77% 23% / 30% 30% 70% 70%; }
-  25% { transform: translate(-50%,-20%) scale(1.2); border-radius: 28% 72% 81% 19% / 78% 25% 75% 22%; }
-  50% { transform: translate(-80%,-10%) scale(1.4); border-radius: 60% 40% 0% 100% / 1% 74% 26% 99%; }
-  75% { transform: translate(-20%,-10%) scale(1.1); border-radius: 0% 100% 100% 0% / 0% 100% 100% 0%; }
-  100% { transform: translate(0, 0) scale(1); border-radius: 24% 76% 77% 23% / 30% 30% 70% 70%; }
-}
+        .imp {
+            color: #FFB86C;
+            font-weight: bold;
+        }
 
-@keyframes shape2 {
-  0% { transform: translate(0, 0) scale(1); border-radius: 73% 27% 77% 23% / 53% 4% 96% 47%; }
-  25% { transform: translate(-60%,-60%) scale(1.3); border-radius: 28% 72% 81% 19% / 78% 25% 75% 22%; }
-  50% { transform: translate(-80%,-70%) scale(1.5); border-radius: 60% 40% 0% 100% / 1% 74% 26% 99%; }
-  75% { transform: translate(-30%,-30%) scale(1.2); border-radius: 0% 100% 100% 0% / 0% 100% 100% 0%; }
-  100% { transform: translate(0, 0) scale(1); border-radius: 73% 27% 77% 23% / 53% 4% 96% 47%; }
-}
+        /* Responsive Tech Lists (Mobile First) */
+        .tech-lists {
+            display: flex;
+            flex-direction: column; /* Default: Stack vertically on small screens */
+            gap: 1.5rem; /* Gap between the two columns when stacked */
+        }
 
-@keyframes shape3 {
-  0% { transform: translate(0, 0) scale(1); border-radius: 70% 30% 80% 20% / 42% 25% 75% 58%; }
-  25% { transform: translate(-80%,-20%) scale(1.3); border-radius: 35% 65% 65% 35% / 60% 40% 60% 40%; }
-  50% { transform: translate(-60%,-40%) scale(1.5); border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
-  75% { transform: translate(-30%,-30%) scale(1.2); border-radius: 20% 80% 80% 20% / 30% 70% 70% 30%; }
-  100% { transform: translate(0, 0) scale(1); border-radius: 70% 30% 80% 20% / 42% 25% 75% 58%; }
-}
+        .tech-lists ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 0;
+        }
 
-@keyframes shape4 {
-  0% { transform: translate(0, 0) scale(1); border-radius: 60% 40% 60% 40% / 40% 60% 60% 40%; }
-  25% { transform: translate(-50%,-70%) scale(1.4); border-radius: 40% 60% 50% 50% / 50% 50% 40% 60%; }
-  50% { transform: translate(-30%,-50%) scale(1.3); border-radius: 80% 20% 20% 80% / 20% 80% 80% 20%; }
-  75% { transform: translate(-70%,-20%) scale(1.5); border-radius: 30% 70% 70% 30% / 60% 40% 40% 60%; }
-  100% { transform: translate(0, 0) scale(1); border-radius: 60% 40% 60% 40% / 40% 60% 60% 40%; }
-}
+        .tech-lists li::before {
+            content: "•"; 
+            color: #D66EFF;
+            font-weight: bold;
+            display: inline-block; 
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        /* --- Media Queries for Mobile Performance and Layout --- */
+        @media (min-width: 600px) {
+             /* Switch to side-by-side on larger devices (tablets and desktops) */
+            .tech-lists {
+                flex-direction: row; 
+                gap: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .h1-container {
+                padding: 1.5rem 4vw; /* Uses fluid padding */
+                margin: 1rem auto;
+            }
+            .h1-container h1 {
+                font-size: 1.8rem;
+                line-height: 1.4;
+                white-space: normal;
+                word-break: break-word;
+                /* Disable typing/blink animation on small screens for max performance */
+                animation: none; 
+                border-right: none;
+                width: auto;
 
-@keyframes shape5 {
-  0% { transform: translate(0, 0) scale(1); border-radius: 40% 60% 60% 40% / 40% 60% 60% 40%; }
-  25% { transform: translate(-100%,-30%) scale(1.3); border-radius: 50% 50% 40% 60% / 60% 40% 50% 50%; }
-  50% { transform: translate(-60%,-80%) scale(1.5); border-radius: 20% 80% 80% 20% / 80% 20% 20% 80%; }
-  75% { transform: translate(-40%,-20%) scale(1.2); border-radius: 30% 70% 60% 40% / 40% 60% 70% 30%; }
-  100% { transform: translate(0, 0) scale(1); border-radius: 40% 60% 60% 40% / 40% 60% 60% 40%; }
-}
+                /* COOL EFFECT FOR MOBILE (no animation/shadow): */
+                /* Use a background gradient that clips to the text, giving it a subtle neon-like edge */
+                background: linear-gradient(90deg, #f5f5f5 50%, #FF4C93 75%, #D66EFF 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            }
 
-@keyframes shape6 {
-  0% { transform: translate(0, 0) scale(1); border-radius: 70% 30% 80% 20% / 42% 25% 75% 58%; }
-  25% { transform: translate(-40%,-60%) scale(1.3); border-radius: 35% 65% 65% 35% / 60% 40% 60% 40%; }
-  50% { transform: translate(-70%,-50%) scale(1.4); border-radius: 60% 40% 40% 60% / 50% 50% 50% 50%; }
-  75% { transform: translate(-20%,-40%) scale(1.2); border-radius: 20% 80% 80% 20% / 40% 60% 60% 40%; }
-  100% { transform: translate(0, 0) scale(1); border-radius: 70% 30% 80% 20% / 42% 25% 75% 58%; }
-}
+            /* Heavily reduce blur and size on mobile */
+            .shape1, .shape2, .shape3 {
+                width: 10rem;
+                height: 10rem;
+                filter: blur(5rem);
+                opacity: 0.5;
+            }
+            /* Hide two of the three remaining shapes for maximum mobile performance */
+            .shape2, .shape3 { display: none; }
 
-.content {
-  position: relative;
-  z-index: 1;
-  margin: 5% auto;
-  padding: 0 5%;
-  max-width: 900px;
-  line-height: 2;
-  padding-bottom: 5%;
-}
 
-.imp {
-  color: #FFB86C;
-  font-weight: bold;
-}
+            h2 { font-size: 1.5rem; }
+            p, li { font-size: 1rem; line-height: 1.6; }
+            /* tech-lists is already column by default, just adjust spacing */
+            .tech-lists ul { padding-left: 0; }
+        }
 
-.vertical-line {
-  position: absolute;
-  top: 10%;
-  left: 1.5rem;
-  width: 5px;
-  height: 80%;
-  background: linear-gradient(180deg, #FF4C93, #D66EFF, #9B5DE5, #CBAACB);
-  border-radius: 10px;
-  z-index: 1;
-}
-
-h2 {
-  font-size: 1.8rem;
-  color: #f0f0f0;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-  padding-bottom: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-p, li {
-  color: #e5e5e5;
-  font-size: 1.1rem;
-}
-
-.tech-lists {
-  display: flex;
-  gap: 20px;
-}
-
-@media (max-width: 768px) {
-  .h1-container {
-    padding: 1.5rem 2rem;
-    margin: 1rem auto;
-  }
-  .h1-container h1 {
-    font-size: 1.8rem;
-    line-height: 1.4;
-    white-space: normal;
-    word-break: break-word;
-  }
-  .shape1, .shape2, .shape3, .shape4, .shape5, .shape6 {
-    width: 12rem;
-    height: 12rem;
-    filter: blur(6rem);
-  }
-  h2 {
-    font-size: 1.5rem;
-  }
-  p, li {
-    font-size: 1rem;
-    line-height: 1.8;
-  }
-  .tech-lists {
-    flex-direction: column;
-    gap: 0;
-  }
-  .tech-lists ul {
-    padding-left: 20px;
-    margin-top: 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .content {
-    padding: 0 4%;
-  }
-  .h1-container {
-    padding: 1rem 1.5rem;
-  }
-  .h1-container h1 {
-    font-size: 1.5rem;
-    line-height: 1.3;
-  }
-  .shape1, .shape2, .shape3, .shape4, .shape5, .shape6 {
-    width: 8rem;
-    height: 8rem;
-    filter: blur(5rem);
-  }
-  h2 {
-    font-size: 1.3rem;
-  }
-  p, li {
-    font-size: 0.95rem;
-  }
-}
-
-.sp {
-  color: #D66EFF;
-}
-</style>
+        @media (max-width: 480px) {
+            .content { padding: 0 4vw; }
+            .h1-container { padding: 1rem 4vw; }
+            .h1-container h1 { 
+                font-size: 1.3rem; /* Adjusted for smallest screens */
+            }
+            /* Only one small shape remains active on the smallest screen */
+            .shape1 { width: 8rem; height: 8rem; filter: blur(4rem); }
+            h2 { font-size: 1.3rem; }
+            p, li { font-size: 0.95rem; }
+        }
+    </style>
 </head>
 <body>
 <div class="content">
-  <div class="h1-container">
-    <div class="h1-animation-container">
-      <div class="shape1"></div>
-      <div class="shape2"></div>
-      <div class="shape3"></div>
-      <div class="shape4"></div>
-      <div class="shape5"></div>
-      <div class="shape6"></div>
+    <div class="h1-container">
+        <div class="h1-animation-container">
+            <div class="shape1"></div>
+            <div class="shape2"></div>
+            <div class="shape3"></div>
+            <!-- shape4, 5, 6 are hidden by default for performance -->
+        </div>
+        <!-- The H1 text now uses CSS for the typing effect -->
+        <h1>> harshal_pendse$ whoami</h1>
     </div>
-    <h1>> harshal_pendse$ whoami</h1>
-  </div>
 
-  <h2 class="scrambleTarget">> Introduction</h2>
-  <p>Highly motivated software developer with strong fundamental skills in Linux, C++, PHP, HTML, CSS, and JavaScript. Seeking an opportunity to apply my knowledge and contribute to the development process while gaining professional experience.</p>
+    <h2>> Introduction</h2>
+    <p>Highly motivated software developer with strong fundamental skills in <span class="imp">Linux</span>, <span class="imp">C++</span>, <span class="imp">PHP</span>, <span class="imp">HTML</span>, <span class="imp">CSS</span>, and <span class="imp">JavaScript</span>. Seeking an opportunity to apply my knowledge and contribute to the development process while gaining professional experience.</p>
 
-  <h2 class="scrambleTarget">> Experience</h2>
-  <p>Intern @ CashRich (FinTech Company)<br>October 2024 – January 2025</p>
-<ul>
-  <li>Worked on full-stack development using <span class="imp">PHP (Laravel)</span> and <span class="imp">WordPress</span>.</li>
-  <li>Worked on the front-end development of an landing page using React, ensuring responsive design and smooth user interaction.</li>
-  <li>Used <span class="imp">Python (pandas)</span> to filter and process CSV/XLSX files, apply conditional filters, and automate data export.</li>
-  <li>Integrated <span class="imp">ChatGPT</span> and <span class="imp">GROK API</span> for customer support automation.</li>
-  <li>Developed <span class="imp">Python scripts</span> for web scraping and data collection.</li>
-  <li>Identified and resolved security vulnerabilities from <span class="imp">VAPT reports</span>.</li>
-  <li>Utilized Microsoft tools, Mixpanel, and Google Analytics for <span class="imp">data analysis and performance monitoring</span>.</li>
-  <li>Designed and built a custom <span class="imp">event-pass management system</span> for an international event  integrating an unofficial <span class="imp">WhatsApp API</span> to verify attendees, retrieve and print passes, and send real-time stats to organizers.</li>
-</ul>
-
-
-  <h2 class="scrambleTarget">> Technologies Known</h2>
-  <div class="tech-lists">
+    <h2>> Experience</h2>
+    <p>Intern @ CashRich (FinTech Company)<br>October 2024 – January 2025</p>
     <ul>
-      <li>Linux & Bash</li>
-      <li>C++</li>
-      <li>PHP (Laravel)</li>
-      <li>React.js</li>
-      <li>HTML5, CSS3, JavaScript</li>
-      <li>Python (Web scraping, Automation, Django)</li>
-      <li>WordPress Development</li>
+        <li>Worked on full-stack development using <span class="imp">PHP (Laravel)</span> and <span class="imp">WordPress</span>.</li>
+        <li>Worked on the front-end development of an landing page using React, ensuring responsive design and smooth user interaction.</li>
+        <li>Used <span class="imp">Python (pandas)</span> to filter and process CSV/XLSX files, apply conditional filters, and automate data export.</li>
+        <li>Integrated <span class="imp">ChatGPT</span> and <span class="imp">GROK API</span> for customer support automation.</li>
+        <li>Developed <span class="imp">Python scripts</span> for web scraping and data collection.</li>
+        <li>Identified and resolved security vulnerabilities from <span class="imp">VAPT reports</span>.</li>
+        <li>Utilized Microsoft tools, Mixpanel, and Google Analytics for <span class="imp">data analysis and performance monitoring</span>.</li>
+        <li>Designed and built a custom <span class="imp">event-pass management system</span> for an international event integrating an unofficial <span class="imp">WhatsApp API</span> to verify attendees, retrieve and print passes, and send real-time stats to organizers.</li>
     </ul>
+
+    <h2>> Technologies Known</h2>
+    <div class="tech-lists">
+        <ul>
+            <li>Linux & Bash</li>
+            <li>C++</li>
+            <li>PHP (Laravel)</li>
+            <li>React.js</li>
+            <li>HTML5, CSS3, JavaScript</li>
+            <li>Python (Web scraping, Automation, Django)</li>
+            <li>WordPress Development</li>
+        </ul>
+        <ul>
+            <li>MySQL, SQLite</li>
+            <li>REST APIs, ChatGPT & GROK API</li>
+            <li>Microsoft Excel, Power Automate</li>
+            <li>Mixpanel, Google Analytics, Microsoft Clarity</li>
+            <li>Security (VAPT resolution)</li>
+        </ul>
+    </div>
+
+    <h2>> Education</h2>
     <ul>
-      <li>MySQL, SQLite</li>
-      <li>REST APIs, ChatGPT & GROK API</li>
-      <li>Microsoft Excel, Power Automate</li>
-      <li>Mixpanel, Google Analytics, Microsoft Clarity</li>
-      <li>Security (VAPT resolution)</li>
+        <li>B.E. in CSE (AIML + CyberSecurity Honors), SCOE -Kharghar, 2024 <b>8.10/10 CGPA</b></li>
     </ul>
-  </div>
 
-  <h2 class="scrambleTarget">> Education</h2>
-  <ul>
-    <li>B.E. in CSE (AIML + CyberSecurity Honors), SCOE -Kharghar, 2024 <b>8.10/10 CGPA</b></li>
-  </ul>
-
-  <h2 class="scrambleTarget">> Links</h2>
-  <p>
-  Email: 📧 <a href="mailto:harshalpendse2142@gmail.com" style="color: #7FDBFF;">harshalpendse2142@gmail.com</a><br>
-LinkedIn: 💼 <a href="https://www.linkedin.com/in/harshal-pendse/" style="color: #7FDBFF;">linkedin.com/in/harshal-pendse</a><br>
-GitHub: 💻 <a href="https://github.com/harshalpendse" style="color: #7FDBFF;">github.com/harshalpendse</a><br>
-
-  </p>
+    <h2>> Links</h2>
+    <p>
+        Email: 📧 <a href="mailto:harshalpendse2142@gmail.com" style="color: #7FDBFF;">harshalpendse2142@gmail.com</a><br>
+        LinkedIn: 💼 <a href="https://www.linkedin.com/in/harshal-pendse/" style="color: #7FDBFF;">linkedin.com/in/harshal-pendse</a><br>
+        GitHub: 💻 <a href="https://github.com/harshalpendse" style="color: #7FDBFF;">github.com/harshalpendse</a><br>
+    </p>
 </div>
 
-<script>
-  function scrambleText(el, finalText, options = {}) {
-    const chars = options.chars || "!<>-_\\/[]{}—=+*^?#________";
-    const delay = options.delay || 50;
-    const stagger = options.stagger || 10;
-    const minScramble = options.minScramble || 20;
-    const maxScramble = options.maxScramble || 50;
-
-    let frame = 0;
-    let queue = [];
-
-    for (let i = 0; i < finalText.length; i++) {
-      const from = Math.random().toString(36).charAt(2);
-      const to = finalText[i];
-      const start = i * stagger;
-      const end = start + minScramble + Math.floor(Math.random() * (maxScramble - minScramble));
-      queue.push({ from, to, start, end, char: from });
-    }
-
-    function update() {
-      let output = '';
-      let complete = 0;
-
-      for (let i = 0; i < queue.length; i++) {
-        let { from, to, start, end, char } = queue[i];
-
-        if (frame >= end) {
-          output += to;
-          complete++;
-        } else if (frame >= start) {
-          char = chars[Math.floor(Math.random() * chars.length)];
-          output += `<span>${char}</span>`;
-        } else {
-          output += from;
-        }
-      }
-
-      el.innerHTML = output;
-
-      if (complete === queue.length) return;
-      frame++;
-      setTimeout(update, delay);
-    }
-
-    update();
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const targets = document.querySelectorAll(".scrambleTarget");
-
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          const text = el.textContent.trim();
-          scrambleText(el, text, {
-            delay: 5,
-            stagger: 12,
-            minScramble: 20,
-            maxScramble: 60
-          });
-          obs.unobserve(el);
-        }
-      });
-    }, {
-      threshold: 0.5
-    });
-
-    targets.forEach(el => observer.observe(el));
-  });
-</script>
+<!-- All performance-heavy JS was removed. -->
 </body>
 </html>
