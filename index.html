@@ -21,7 +21,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harshal Pendse</title>
-    <!-- We're keeping 'Fira Code' for the terminal look, assuming it is loaded externally or locally, but prioritizing speed by not loading it here. -->
+    <!-- Tailwind is included for general layout utility and the JS logic for status messages, but primary styling remains custom -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
             margin: 0;
@@ -66,7 +67,7 @@
             font-size: 3rem;
             font-weight: bold;
             color: #f5f5f5; 
-            text-shadow: none; /* REMOVED TEXT SHADOW */
+            text-shadow: none;
             text-align: left;
             margin: 5% 0; 
             width: fit-content; 
@@ -171,12 +172,67 @@
             margin-left: -1em;
         }
         
-        /* --- Media Queries for Mobile Performance and Layout --- */
+        /* --- NEW STYLES FOR RECOMMENDATION SYSTEM --- */
+        .recommendation-panel {
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            color: #e5e5e5;
+        }
+        
+        /* Anchor selector styling */
+        .anchor-select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            background-color: #333;
+            color: #f5f5f5;
+            font-family: 'Fira Code', monospace;
+            appearance: none; /* Hide default arrow */
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23f5f5f5%22%20d%3D%22M287%2069.9L146.2%20210.7%205.4%2069.9z%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 8px top 50%;
+            background-size: 10px auto;
+        }
+
+
+        #profileList li {
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 4px solid transparent;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+        #profileList li:hover {
+            background-color: rgba(255, 255, 255, 0.05); /* Subtle hover */
+            border-left-color: #D66EFF; /* Purple neon on hover */
+        }
+        #profileList li.selected {
+            background-color: rgba(255, 76, 147, 0.1); /* Light pink background */
+            border-left-color: #FF4C93; /* Neon Pink for selected */
+            font-weight: 600;
+        }
+        
+        /* Style for the status box */
+        #statusMessage > div {
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            background-color: #252525;
+            box-shadow: 0 0 10px rgba(255, 76, 147, 0.3); /* Soft glow */
+        }
+
+        /* Mobile Adjustments */
         @media (min-width: 600px) {
-             /* Switch to side-by-side on larger devices (tablets and desktops) */
+            /* Switch to side-by-side on larger devices (tablets and desktops) */
             .tech-lists {
                 flex-direction: row; 
                 gap: 40px;
+            }
+            .rec-grid {
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                gap: 2rem;
             }
         }
         
@@ -196,7 +252,6 @@
                 width: auto;
 
                 /* COOL EFFECT FOR MOBILE (no animation/shadow): */
-                /* Use a background gradient that clips to the text, giving it a subtle neon-like edge */
                 background: linear-gradient(90deg, #f5f5f5 50%, #FF4C93 75%, #D66EFF 100%);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
@@ -218,6 +273,12 @@
             p, li { font-size: 1rem; line-height: 1.6; }
             /* tech-lists is already column by default, just adjust spacing */
             .tech-lists ul { padding-left: 0; }
+            
+            /* Recommendation panel layout for mobile */
+            .rec-grid {
+                display: flex;
+                flex-direction: column;
+            }
         }
 
         @media (max-width: 480px) {
@@ -262,6 +323,44 @@
         <li>Designed and built a custom <span class="imp">event-pass management system</span> for an international event integrating an unofficial <span class="imp">WhatsApp API</span> to verify attendees, retrieve and print passes, and send real-time stats to organizers.</li>
     </ul>
 
+    <h2>> Basic Demonstration of a Recommendation System</h2>
+    <div class="recommendation-panel">
+        <!-- Target Profile Selection -->
+        <div class="mb-6 p-3 rounded-lg border-2 border-gray-700 bg-[#252525]">
+            <h3 class="text-lg font-semibold text-[#D66EFF] mb-2">Select Anchor Profile:</h3>
+            <select id="anchorProfileSelector" class="anchor-select" onchange="window.updateAnchorProfile(this.value)">
+                <!-- Options populated by JavaScript -->
+            </select>
+            <p class="text-sm text-gray-400 mt-2">
+                Field: <span id="currentUserField"></span>
+            </p>
+        </div>
+
+        <div class="rec-grid">
+            
+            <!-- Profile Selection Panel -->
+            <div class="lg:col-span-1">
+                <h3 class="text-xl font-semibold mb-3 text-fuchsia-400">Comparison Profiles</h3>
+                <ul id="profileList" class="divide-y divide-gray-700">
+                    <!-- Profiles will be injected here by JavaScript -->
+                </ul>
+            </div>
+
+            <!-- Visualization Panel -->
+            <div class="lg:col-span-2 flex flex-col items-center justify-center pt-4">
+                <h3 class="text-xl font-semibold mb-4 text-fuchsia-400">Match Visualization</h3>
+                
+                <div id="statusMessage" class="h-24 flex items-center justify-center mb-4 w-full">
+                    <p class="text-gray-400 text-lg">Click a comparison profile to view the match analysis.</p>
+                </div>
+
+                <!-- Canvas for Chart -->
+                <canvas id="chartCanvas" width="550" height="250" class="rounded-lg bg-[#252525] border border-gray-700"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Original portfolio content continues -->
     <h2>> Technologies Known</h2>
     <div class="tech-lists">
         <ul>
@@ -295,6 +394,284 @@
     </p>
 </div>
 
-<!-- All performance-heavy JS was removed. -->
+<script>
+    // --- 1. DATA AND CONFIGURATION ---
+    
+    // Available Anchor Profiles (The user's possible starting points)
+    const anchorProfiles = [
+        { id: "dev_intern", role: "Software Development Intern", field: "Technology" },
+        { id: "marketing_intern", role: "Marketing Intern", field: "Marketing" },
+        { id: "data_trainee", role: "Data Analyst Trainee", field: "Data Science" },
+        { id: "finance_trainee", role: "Financial Operations Trainee", field: "Finance" }
+    ];
+
+    let currentAnchorProfile = anchorProfiles[0]; // Set default anchor profile
+    
+    // Recommendation Threshold (e.g., score > 70% is Recommended)
+    const REC_THRESHOLD = 70;
+
+    // List of external profiles to compare against
+    const externalProfiles = [
+        { id: 1, role: "Senior Software Engineer", position: "Senior", field: "Technology" },
+        { id: 2, role: "Junior Data Scientist", position: "Junior", field: "Data Science" },
+        { id: 3, role: "Cloud Solutions Architect", position: "Architect", field: "Cloud Computing" },
+        { id: 4, role: "Financial Analyst", position: "Analyst", field: "Finance" },
+        { id: 5, role: "Full Stack Developer", position: "Mid-Level", field: "Technology" },
+        { id: 6, role: "Marketing Specialist", position: "Specialist", field: "Marketing" },
+        { id: 7, role: "UX/UI Designer", position: "Mid-Level", field: "Design" },
+        { id: 8, role: "Systems Administrator", position: "Mid-Level", field: "IT Operations" },
+    ];
+
+
+    // --- 2. MATCHING ALGORITHM (SIMULATION) ---
+
+    /**
+     * Simulates a matching score (0-100) between the current anchor and a target profile.
+     */
+    function calculateMatchScore(targetProfile) {
+        let score = 0;
+        const anchorId = currentAnchorProfile.id;
+        const targetField = targetProfile.field.toLowerCase();
+        const targetRole = targetProfile.role.toLowerCase();
+        const targetPosition = targetProfile.position.toLowerCase();
+
+        // Base score for field alignment
+        if (anchorId === "dev_intern") {
+            // Favors Technology/Engineering/Higher Roles
+            if (targetField === "technology" || targetRole.includes("dev") || targetRole.includes("engineer")) score += 40;
+            if (targetPosition === "senior" || targetPosition === "architect") score += 20;
+            else if (targetPosition === "junior" || targetPosition === "mid-level") score += 15;
+            if (targetField.includes("computing") || targetField.includes("science")) score += 15;
+        } else if (anchorId === "marketing_intern") {
+            // Favors Marketing/Specialist Roles
+            if (targetField === "marketing" || targetRole.includes("specialist")) score += 45;
+            if (targetField === "design" || targetRole.includes("analyst")) score += 20;
+            if (targetField.includes("finance")) score += 10;
+        } else if (anchorId === "data_trainee") {
+            // Favors Data/Computing/Analyst Roles
+            if (targetField === "data science" || targetField === "cloud computing") score += 45;
+            if (targetRole.includes("analyst") || targetRole.includes("scientist")) score += 20;
+            if (targetField === "technology") score += 10;
+        } else if (anchorId === "finance_trainee") {
+            // Favors Finance/Analyst/Business Roles
+            if (targetField === "finance" || targetRole.includes("analyst")) score += 50;
+            if (targetField === "data science") score += 10; // Data skills are useful
+            if (targetField === "marketing") score += 5;
+        }
+
+        // Apply a base score and normalize
+        score = score * 1.5 + 20; // Scale up the scores
+        
+        // Random Noise (to make it look less deterministic)
+        score += Math.floor(Math.random() * 10) - 5; // +/- 5 points
+
+        // Ensure score is between 0 and 100
+        return Math.max(0, Math.min(100, Math.round(score)));
+    }
+
+
+    // --- 3. CANVAS DRAWING FUNCTION ---
+    
+    // Canvas context and dimensions variables
+    // They are now assigned inside initializeProfileList, removing the need for global 'let' declarations.
+    let canvasCtx, canvasW, canvasH; 
+
+    /**
+     * Draws the matching bar chart and status text on the canvas.
+     */
+    function drawChart(matchScore, roleLabel) {
+        // Use the initialized global canvas variables
+        const ctx = canvasCtx;
+        const W = canvasW;
+        const H = canvasH;
+        
+        if (!ctx) return;
+
+        // 1. Clear the canvas
+        ctx.clearRect(0, 0, W, H);
+        
+        // Constants for drawing
+        const BAR_HEIGHT = 40; 
+        const CHART_PAD_X = 50;
+        const CHART_PAD_Y = 40;
+        const DRAW_WIDTH = W - (2 * CHART_PAD_X);
+        const BAR_Y = H / 2 - (BAR_HEIGHT / 2);
+
+        // Calculate colors and status
+        const isRecommended = matchScore >= REC_THRESHOLD;
+        // Use neon colors from your theme
+        const barFillColor = isRecommended ? '#10B981' : '#FF4C93'; // Green or Neon Pink
+        const barLength = (matchScore / 100) * DRAW_WIDTH;
+
+        // --- A. Draw Title/Label ---
+        ctx.font = 'bold 16px "Fira Code", monospace';
+        ctx.fillStyle = '#f5f5f5'; // Light text for dark background
+        ctx.textAlign = 'center';
+        ctx.fillText(`Match Analysis for: ${roleLabel}`, W / 2, CHART_PAD_Y - 5);
+        
+        // --- B. Draw Bar Container (100% line) ---
+        ctx.strokeStyle = '#333'; // Darker grey for container
+        ctx.lineWidth = BAR_HEIGHT;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(CHART_PAD_X, BAR_Y + (BAR_HEIGHT / 2));
+        ctx.lineTo(W - CHART_PAD_X, BAR_Y + (BAR_HEIGHT / 2));
+        ctx.stroke();
+
+        // --- C. Draw Actual Match Bar ---
+        ctx.strokeStyle = barFillColor;
+        ctx.lineWidth = BAR_HEIGHT - 6; // Slightly thinner than container
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(CHART_PAD_X + 3, BAR_Y + (BAR_HEIGHT / 2)); 
+        ctx.lineTo(CHART_PAD_X + barLength, BAR_Y + (BAR_HEIGHT / 2));
+        ctx.stroke();
+
+        // --- D. Draw Recommendation Threshold Line ---
+        const thresholdX = CHART_PAD_X + (REC_THRESHOLD / 100) * DRAW_WIDTH;
+        ctx.strokeStyle = '#D66EFF'; // Purple neon for threshold
+        ctx.lineWidth = 2;
+        ctx.setLineDash([5, 5]); // Dashed line
+        ctx.beginPath();
+        ctx.moveTo(thresholdX, BAR_Y - 5);
+        ctx.lineTo(thresholdX, BAR_Y + BAR_HEIGHT + 5);
+        ctx.stroke();
+        ctx.setLineDash([]); // Reset line style
+
+        // Threshold label
+        ctx.font = '10px "Fira Code", monospace';
+        ctx.fillStyle = '#D66EFF';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Threshold (${REC_THRESHOLD}%)`, thresholdX, BAR_Y - 10);
+
+        // --- E. Draw Score Percentage Text ---
+        ctx.font = 'bold 20px "Fira Code", monospace';
+        ctx.fillStyle = '#000'; // Black text on colored bar
+        
+        // Position the score text inside the bar, or just outside if bar is too small
+        let textX = CHART_PAD_X + barLength / 2;
+        if (barLength < 70) { // If bar is too small, put text outside
+            textX = CHART_PAD_X + barLength + 30;
+            ctx.fillStyle = barFillColor; // Colored text outside the bar
+        }
+
+        ctx.fillText(`${matchScore}%`, textX, BAR_Y + (BAR_HEIGHT / 2) + 6);
+    }
+
+
+    // --- 4. UI AND EVENT HANDLING ---
+
+    const profileList = document.getElementById('profileList');
+    const statusMessage = document.getElementById('statusMessage');
+    const selector = document.getElementById('anchorProfileSelector');
+    const currentUserFieldSpan = document.getElementById('currentUserField');
+
+    /**
+     * Populates the anchor profile dropdown options.
+     */
+    function populateAnchorProfiles() {
+        selector.innerHTML = '';
+        anchorProfiles.forEach(profile => {
+            const option = document.createElement('option');
+            option.value = profile.id;
+            option.textContent = profile.role;
+            selector.appendChild(option);
+        });
+        // Initialize the UI with the default profile
+        updateAnchorProfile(currentAnchorProfile.id, false);
+    }
+    
+    /**
+     * Updates the current anchor profile based on the selector change.
+     */
+    window.updateAnchorProfile = function(selectedId, clearViz = true) {
+        const newProfile = anchorProfiles.find(p => p.id === selectedId);
+        if (newProfile) {
+            currentAnchorProfile = newProfile;
+            currentUserFieldSpan.textContent = newProfile.field;
+
+            // Clear the visualization area to prompt a new comparison
+            if (clearViz) {
+                // Now using the globally assigned canvas variables
+                if (canvasCtx) {
+                    canvasCtx.clearRect(0, 0, canvasW, canvasH);
+                }
+                statusMessage.innerHTML = `<p class="text-gray-400 text-lg">Anchor profile set to ${newProfile.role}. Click a comparison profile to view the match analysis.</p>`;
+                // Reset selection highlights
+                document.querySelectorAll('#profileList li').forEach(item => {
+                    item.classList.remove('selected');
+                });
+            }
+        }
+    }
+
+
+    /**
+     * Handles the click on an external profile.
+     */
+    function handleProfileClick(profile, listItem) {
+        // 1. Calculate Score using the currently selected anchor
+        const score = calculateMatchScore(profile);
+        const isRecommended = score >= REC_THRESHOLD;
+
+        // 2. Update Status Message
+        const statusColorClass = isRecommended ? 'text-green-400' : 'text-fuchsia-400';
+        const statusIcon = isRecommended ? '✅' : '⚠️';
+        const borderColorClass = isRecommended ? 'border-green-600' : 'border-fuchsia-600';
+
+        statusMessage.innerHTML = `
+            <div class="p-3 rounded-lg border-2 ${borderColorClass} shadow-md text-center bg-[#181818] w-full">
+                <p class="text-xl font-bold ${statusColorClass} font-mono">${statusIcon} ${isRecommended ? 'HIGHLY RECOMMENDED' : 'NOT RECOMMENDED YET'}</p>
+                <p class="text-sm text-gray-500">Comparing **${currentAnchorProfile.role}** to **${profile.role}**.</p>
+            </div>
+        `;
+
+        // 3. Draw Chart (no longer passing context/dimensions)
+        drawChart(score, profile.role);
+
+        // 4. Update Selection State
+        document.querySelectorAll('#profileList li').forEach(item => {
+            item.classList.remove('selected');
+        });
+        listItem.classList.add('selected');
+    }
+
+    /**
+     * Initializes the list of external profiles in the UI and sets up the canvas context.
+     */
+    function initializeProfileList() {
+        // FIX: Assign global canvas variables directly here.
+        const chartCanvas = document.getElementById('chartCanvas');
+        canvasCtx = chartCanvas.getContext('2d');
+        canvasW = chartCanvas.width;
+        canvasH = chartCanvas.height;
+        
+        populateAnchorProfiles();
+
+        externalProfiles.forEach(profile => {
+            const listItem = document.createElement('li');
+            listItem.className = 'p-3 my-1 rounded-lg flex justify-between items-center text-sm';
+            listItem.innerHTML = `
+                <div>
+                    <div class="text-md text-gray-200 font-bold">${profile.role}</div>
+                    <div class="text-xs text-gray-500">${profile.position} | ${profile.field}</div>
+                </div>
+                <!-- Neon arrow -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-fuchsia-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            `;
+            // The click handler now only needs the profile and list item, as context is globally accessible
+            listItem.addEventListener('click', () => handleProfileClick(profile, listItem));
+            profileList.appendChild(listItem);
+        });
+        
+        // Initial draw: Clear canvas
+        canvasCtx.clearRect(0, 0, canvasW, canvasH);
+    }
+    
+    // --- 5. INITIALIZATION ---
+    window.onload = initializeProfileList;
+</script>
 </body>
 </html>
