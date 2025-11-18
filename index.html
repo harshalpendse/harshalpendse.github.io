@@ -223,7 +223,7 @@
             color: #f5f5f5;
             font-family: 'Fira Code', monospace;
             appearance: none; /* Hide default arrow */
-            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23f5f5f5%22%20d%3D%22M287%2069.9L146.2%20210.7%205.4%2069.9z%22%2F%3E%3C%2Fsvg%3E');
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%2D%22292.4%22%3E%3Cpath%20fill%3D%22%23f5f5f5%22%20d%3D%22M287%2069.9L146.2%20210.7%205.4%2069.9z%22%2F%3E%3C%2Fsvg%3E');
             background-repeat: no-repeat;
             background-position: right 8px top 50%;
             background-size: 10px auto;
@@ -262,6 +262,7 @@
                 gap: 40px;
             }
             .rec-grid {
+                /* FIX: Ensure grid is used for desktop side-by-side layout */
                 display: grid;
                 grid-template-columns: 1fr 2fr;
                 gap: 2rem;
@@ -276,6 +277,7 @@
             .h1-container h1 {
                 font-size: 1.8rem;
                 line-height: 1.4;
+                /* FIX 1: Allow text wrapping to prevent horizontal overflow on mobile */
                 white-space: normal;
                 word-break: break-word;
                 /* Disable typing/blink animation on small screens for max performance */
@@ -306,7 +308,7 @@
             /* tech-lists is already column by default, just adjust spacing */
             .tech-lists ul { padding-left: 0; }
             
-            /* Recommendation panel layout for mobile */
+            /* FIX 2: Ensure comparison list and chart stack nicely on mobile */
             .rec-grid {
                 display: flex;
                 flex-direction: column;
@@ -357,7 +359,7 @@
 
     <!-- Recommendation System Section (Now collapsible) -->
     <details class="rec-container">
-        <summary> Basic Demonstration of a Recommendation System</summary>
+        <summary>> Basic Demonstration of a Recommendation System</summary>
         <div class="recommendation-panel">
             <p class="mb-4 text-gray-400">This feature demonstrates a basic profile-matching logic based on career field and position. Select an **Anchor Profile** (your starting point) and click any **Comparison Profile** to see the simulated match percentage and recommendation status.</p>
 
