@@ -173,12 +173,44 @@
         }
         
         /* --- NEW STYLES FOR RECOMMENDATION SYSTEM --- */
-        .recommendation-panel {
-            background: rgba(0,0,0,0.5);
+        .rec-container {
+            margin-top: 1.5rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 10px;
+            background: rgba(0,0,0,0.5);
+            padding: 0; /* Remove padding from container */
+        }
+        
+        /* Dropdown summary styling */
+        .rec-container summary {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #D66EFF; /* Purple Neon */
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            list-style: none;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .rec-container details[open] summary {
+            color: #FF4C93; /* Pink Neon when open */
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        .rec-container summary::-webkit-details-marker {
+            display: none;
+        }
+        .rec-container summary::before {
+            content: '>';
+            margin-right: 10px;
+        }
+        .rec-container details[open] summary::before {
+            content: 'v';
+        }
+
+        .recommendation-panel {
             padding: 1.5rem;
             color: #e5e5e5;
+            border-top: none;
         }
         
         /* Anchor selector styling */
@@ -323,42 +355,47 @@
         <li>Designed and built a custom <span class="imp">event-pass management system</span> for an international event integrating an unofficial <span class="imp">WhatsApp API</span> to verify attendees, retrieve and print passes, and send real-time stats to organizers.</li>
     </ul>
 
-    <h2>> Basic Demonstration of a Recommendation System</h2>
-    <div class="recommendation-panel">
-        <!-- Target Profile Selection -->
-        <div class="mb-6 p-3 rounded-lg border-2 border-gray-700 bg-[#252525]">
-            <h3 class="text-lg font-semibold text-[#D66EFF] mb-2">Select Anchor Profile:</h3>
-            <select id="anchorProfileSelector" class="anchor-select" onchange="window.updateAnchorProfile(this.value)">
-                <!-- Options populated by JavaScript -->
-            </select>
-            <p class="text-sm text-gray-400 mt-2">
-                Field: <span id="currentUserField"></span>
-            </p>
-        </div>
+    <!-- Recommendation System Section (Now collapsible) -->
+    <details class="rec-container">
+        <summary> Basic Demonstration of a Recommendation System</summary>
+        <div class="recommendation-panel">
+            <p class="mb-4 text-gray-400">This feature demonstrates a basic profile-matching logic based on career field and position. Select an **Anchor Profile** (your starting point) and click any **Comparison Profile** to see the simulated match percentage and recommendation status.</p>
 
-        <div class="rec-grid">
-            
-            <!-- Profile Selection Panel -->
-            <div class="lg:col-span-1">
-                <h3 class="text-xl font-semibold mb-3 text-fuchsia-400">Comparison Profiles</h3>
-                <ul id="profileList" class="divide-y divide-gray-700">
-                    <!-- Profiles will be injected here by JavaScript -->
-                </ul>
+            <!-- Target Profile Selection -->
+            <div class="mb-6 p-3 rounded-lg border-2 border-gray-700 bg-[#252525]">
+                <h3 class="text-lg font-semibold text-[#D66EFF] mb-2">Select Anchor Profile:</h3>
+                <select id="anchorProfileSelector" class="anchor-select" onchange="window.updateAnchorProfile(this.value)">
+                    <!-- Options populated by JavaScript -->
+                </select>
+                <p class="text-sm text-gray-400 mt-2">
+                    Field: <span id="currentUserField"></span>
+                </p>
             </div>
 
-            <!-- Visualization Panel -->
-            <div class="lg:col-span-2 flex flex-col items-center justify-center pt-4">
-                <h3 class="text-xl font-semibold mb-4 text-fuchsia-400">Match Visualization</h3>
+            <div class="rec-grid">
                 
-                <div id="statusMessage" class="h-24 flex items-center justify-center mb-4 w-full">
-                    <p class="text-gray-400 text-lg">Click a comparison profile to view the match analysis.</p>
+                <!-- Profile Selection Panel -->
+                <div class="lg:col-span-1">
+                    <h3 class="text-xl font-semibold mb-3 text-fuchsia-400">Comparison Profiles</h3>
+                    <ul id="profileList" class="divide-y divide-gray-700">
+                        <!-- Profiles will be injected here by JavaScript -->
+                    </ul>
                 </div>
 
-                <!-- Canvas for Chart -->
-                <canvas id="chartCanvas" width="550" height="250" class="rounded-lg bg-[#252525] border border-gray-700"></canvas>
+                <!-- Visualization Panel -->
+                <div class="lg:col-span-2 flex flex-col items-center justify-center pt-4">
+                    <h3 class="text-xl font-semibold mb-4 text-fuchsia-400">Match Visualization</h3>
+                    
+                    <div id="statusMessage" class="h-24 flex items-center justify-center mb-4 w-full">
+                        <p class="text-gray-400 text-lg">Click a comparison profile to view the match analysis.</p>
+                    </div>
+
+                    <!-- Canvas for Chart -->
+                    <canvas id="chartCanvas" width="550" height="250" class="rounded-lg bg-[#252525] border border-gray-700"></canvas>
+                </div>
             </div>
         </div>
-    </div>
+    </details>
     
     <!-- Original portfolio content continues -->
     <h2>> Technologies Known</h2>
@@ -473,7 +510,6 @@
     // --- 3. CANVAS DRAWING FUNCTION ---
     
     // Canvas context and dimensions variables
-    // They are now assigned inside initializeProfileList, removing the need for global 'let' declarations.
     let canvasCtx, canvasW, canvasH; 
 
     /**
@@ -640,7 +676,7 @@
      * Initializes the list of external profiles in the UI and sets up the canvas context.
      */
     function initializeProfileList() {
-        // FIX: Assign global canvas variables directly here.
+        // Assign global canvas variables directly here.
         const chartCanvas = document.getElementById('chartCanvas');
         canvasCtx = chartCanvas.getContext('2d');
         canvasW = chartCanvas.width;
