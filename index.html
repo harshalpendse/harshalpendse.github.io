@@ -8,33 +8,41 @@
 <title>Harshal | Personal Homepage</title>
 <meta name="description" content="Harshal's personal homepage. Resume, blog and projects. Part of the indiweb.">
 <style>
-  :root{--bg:#121212;--text:#E8E8E3;--link:#E8E8E3;--vlink:#A3A39E;--hr:#333}
-  [data-theme="light"]{--bg:#FFFFFF;--text:#1A1A1A;--link:#1A1A1A;--vlink:#555;--hr:#DDD}
-  body{max-width:960px;margin:40px auto;padding:0 20px;text-align:center;line-height:1.6;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:18px;background:var(--bg);color:var(--text)}
-  a{color:var(--link)}
+  :root{--bg:#121212;--surface:#1A1A1A;--text:#E8E8E3;--muted:#A3A39E;--vlink:#A3A39E;--hr:#2A2A2A;--accent:#C9A15C}
+  [data-theme="light"]{--bg:#FDFCFA;--surface:#F6F3EC;--text:#1A1A1A;--muted:#5A5A54;--vlink:#8A7A5A;--hr:#E4DFD3;--accent:#9C7A32}
+  *{box-sizing:border-box}
+  body{max-width:720px;margin:0 auto;padding:48px 24px 64px;line-height:1.65;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:18px;background:var(--bg);color:var(--text);transition:background .2s ease,color .2s ease}
+  a{color:var(--text);text-decoration-color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px}
+  a:hover{color:var(--accent)}
   a:visited{color:var(--vlink)}
   main,section{text-align:left}
   header{text-align:left}
-  nav p{margin:0}
-  nav a{padding:4px 2px}
-  header{margin:28px 0}
-  h1{margin-bottom:8px}
-  section{margin-bottom:36px}
-  section h2{margin-bottom:12px}
-  section h3{margin-top:20px;margin-bottom:6px}
-  ul,ol{padding-left:22px}
+  nav{margin-bottom:8px}
+  nav p{margin:0;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  nav a{padding:4px 2px;text-decoration:none;font-size:15px;letter-spacing:.02em;color:var(--muted)}
+  nav a:hover{color:var(--accent)}
+  header{margin:32px 0 40px}
+  h1{margin:0 0 10px;font-size:2rem;letter-spacing:-.01em}
+  section{margin-bottom:28px;padding:24px;background:var(--surface);border:1px solid var(--hr);border-radius:10px}
+  section h2{margin:0 0 14px;font-size:1.1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+  section h3{margin-top:0;margin-bottom:6px;font-size:1.15rem}
+  ul,ol{padding-left:22px;margin:0}
   li{margin-bottom:8px}
-  hr{margin:32px 0;border-color:var(--hr)}
-  footer{margin-top:20px}
-  #theme-toggle{background:none;border:1px solid var(--hr);color:var(--text);padding:8px 14px;min-height:44px;border-radius:4px;font-size:14px;cursor:pointer}
+  footer{margin-top:32px;text-align:center;color:var(--muted)}
+  footer a{color:var(--muted);text-decoration:none}
+  footer a:hover{color:var(--accent)}
+  #theme-toggle{background:none;border:1px solid var(--hr);color:var(--muted);padding:8px 14px;min-height:44px;border-radius:999px;font-size:13px;letter-spacing:.02em;cursor:pointer;margin-left:auto}
+  #theme-toggle:hover{color:var(--accent);border-color:var(--accent)}
   .skip-link{position:absolute;left:-9999px;top:0;background:var(--bg);color:var(--text);padding:8px 16px;border:1px solid var(--hr);border-radius:4px;z-index:10}
   .skip-link:focus{left:20px;top:20px}
   .page-layout{display:flex;gap:36px;align-items:flex-start}
   .page-layout>.page-content{flex:1;min-width:0}
-  .side-photo{width:220px;max-width:40%;height:260px;object-fit:cover;object-position:bottom;border-radius:4px;flex-shrink:0}
+  .side-photo{width:160px;max-width:35%;height:190px;object-fit:cover;object-position:bottom;border-radius:10px;border:1px solid var(--hr);flex-shrink:0}
   @media (max-width:640px){
+    body{padding:32px 18px 48px}
     .page-layout{flex-direction:column}
-    .side-photo{width:100%;max-width:260px;align-self:center}
+    .side-photo{width:100%;max-width:220px;align-self:flex-start}
+    section{padding:20px}
   }
 </style>
 </head>
@@ -56,7 +64,7 @@
 
     <header>
       <h1 id="top">Hi, I'm Harshal.</h1>
-      <p><small>Mumbai, <time id="mumbai-time"></time></small></p>
+      <p><small style="color:var(--muted)">Mumbai, <time id="mumbai-time"></time></small></p>
       <p>
         This is my homepage. I mostly don't post on social media since I find it
         too addictive, so this site is my main presence on the internet, along
@@ -65,8 +73,6 @@
         use GitHub Pages, since it uses Jekyll as its static site engine.
       </p>
     </header>
-
-    <hr>
 
     <main id="main-content">
 
@@ -103,8 +109,6 @@
 
   <img class="side-photo" src="images/deity.jpg" alt="A statue of a peacock deity">
 </div>
-
-<hr>
 
 <footer>
   <p>
