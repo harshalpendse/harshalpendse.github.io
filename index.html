@@ -7,15 +7,12 @@
 <meta name="theme-color" content="#0B0B0B">
 <title>Harshal | Personal Homepage</title>
 <meta name="description" content="Harshal's personal homepage. Resume, blog and projects. Part of the indiweb.">
+<style>
+  body{max-width:700px;margin:0 auto;text-align:center}
+  main,section{text-align:left}
+</style>
 </head>
 <body bgcolor="#0B0B0B" text="#E8E8E3" link="#E8E8E3" vlink="#A3A39E" alink="#FFFFFF">
-
-<header>
-  <h1 id="top">Hi, I'm Harshal.</h1>
-  <p><i>Welcome to my corner of the Indian web.</i></p>
-  <img src="me.jpg" alt="Portrait of Harshal" width="200" height="200">
-  <p><small>Mumbai, India</small></p>
-</header>
 
 <nav aria-label="Main menu">
   <p>
@@ -27,6 +24,19 @@
     <a href="#contact">Contact</a>
   </p>
 </nav>
+
+<header>
+  <h1 id="top">Hi, I'm Harshal.</h1>
+  <p><small>Mumbai, <time id="mumbai-time"></time></small></p>
+  <p>
+    This is my homepage. I mostly don't post on social media since I find it
+    too addictive, so this site is my main presence on the internet, along
+    with LinkedIn. There's also <a href="https://neocities.org/" target="_blank" rel="noopener">Neocities</a>,
+    where you can host a personal webpage for free, but I find it simpler to
+    use GitHub Pages, since it uses Jekyll as its static site engine and I'm
+    already comfortable with GitHub.
+  </p>
+</header>
 
 <hr>
 
@@ -81,14 +91,14 @@
   <section id="links">
     <h2>Links</h2>
     <ul>
-      <li><a href="https://github.com/">GitHub</a> (replace with your profile)</li>
+      <li><a href="https://github.com/harshalpendse">GitHub</a></li>
       <li><a href="https://www.linkedin.com/">LinkedIn</a> (replace with your profile)</li>
     </ul>
   </section>
 
   <section id="contact">
     <h2>Contact</h2>
-    <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
+    <p>Email: <a href="mailto:harshalpendse2142@gmail.com">harshalpendse2142@gmail.com</a></p>
   </section>
 
 </main>
@@ -104,6 +114,15 @@
     </small>
   </p>
 </footer>
+
+<script>
+  (function(){
+    var el=document.getElementById('mumbai-time');
+    var fmt=new Intl.DateTimeFormat('en-IN',{timeZone:'Asia/Kolkata',weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true});
+    function tick(){el.textContent=fmt.format(new Date());}
+    tick();setInterval(tick,1000);
+  })();
+</script>
 
 </body>
 </html>
